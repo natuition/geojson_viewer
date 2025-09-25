@@ -1,0 +1,26 @@
+{
+    "name": "geojson-map-pwa",
+    "version": "1.0.0",
+    "description": "Progressive Web App for displaying GeoJSON data from ZIP files on Mapbox maps",
+    "main": "index.js",
+    "scripts": {
+        "start": "http-server -p 8080 -c-1",
+        "build": "echo 'Build completed'",
+        "dev": "http-server -p 8080 -c-1 -o"
+    },
+    "keywords": [
+        "pwa",
+        "geojson",
+        "mapbox",
+        "mobile",
+        "zip"
+    ],
+    "author": "Vincent Lambert",
+    "license": "MIT",
+    "devDependencies": {
+        "http-server": "^14.1.1"
+    },
+    "dependencies": {
+        "jszip": "^3.10.1"
+    }
+}

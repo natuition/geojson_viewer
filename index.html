@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>GeoJSON Map Viewer</title>
+
+    <!-- PWA Meta Tags -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="GeoJSON Map">
+    <meta name="theme-color" content="#2196F3">
+
+    <!-- Favicon and Icons -->
+    <link rel="icon" href="/icons/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.svg">
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json">
+
+    <!-- Mapbox CSS -->
+    <link href="https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.css" rel="stylesheet">
+
+    <!-- App Styles -->
+    <link rel="stylesheet" href="/styles/main.css">
+</head>
+
+<body>
+    <div id="app">
+        <!-- Header -->
+        <header class="app-header">
+            <h1>GeoJSON Map Viewer</h1>
+            <button id="helpBtn" class="help-btn">?</button>
+        </header>
+
+        <!-- File Upload Section -->
+        <section class="upload-section" id="uploadSection">
+            <div class="upload-container">
+                <div class="upload-area" id="uploadArea">
+                    <div class="upload-icon">📁</div>
+                    <h2>Importer un fichier ZIP</h2>
+                    <p>Glissez-déposez un fichier ZIP contenant des données GeoJSON</p>
+                    <input type="file" id="fileInput" accept=".zip,application/zip" hidden>
+                    <button id="selectFileBtn" class="btn-primary">Choisir un fichier</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Map Container -->
+        <section class="map-section" id="mapSection" style="display: none;">
+            <div class="map-controls">
+                <button id="backBtn" class="btn-secondary">← Retour</button>
+                <button id="layersBtn" class="btn-secondary">Calques</button>
+            </div>
+            <div id="map" class="map-container"></div>
+        </section>
+
+        <!-- Layer Panel -->
+        <aside class="layer-panel" id="layerPanel">
+            <div class="layer-panel-header">
+                <h3>Calques</h3>
+                <button id="closePanelBtn">×</button>
+            </div>
+            <div class="layer-list" id="layerList">
+                <!-- Layers will be populated dynamically -->
+            </div>
+        </aside>
+
+        <!-- Help Modal -->
+        <div class="modal" id="helpModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Comment utiliser l'app</h2>
+                    <button id="closeHelpBtn" class="close-btn">×</button>
+                </div>
+                <div class="modal-body">
+                    <ol>
+                        <li>Créez un fichier ZIP contenant un ou plusieurs fichiers GeoJSON</li>
+                        <li>Partagez le ZIP avec cette app ou importez-le directement</li>
+                        <li>L'app extraira automatiquement les données GeoJSON</li>
+                        <li>Les données seront affichées sur la carte Mapbox</li>
+                        <li>Utilisez les contrôles pour naviguer et gérer les calques</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <!-- Loading Overlay -->
+        <div class="loading-overlay" id="loadingOverlay">
+            <div class="loading-spinner"></div>
+            <p>Traitement du fichier...</p>
+        </div>
+
+        <!-- Error Toast -->
+        <div class="error-toast" id="errorToast">
+            <span id="errorMessage"></span>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="/js/app.js"></script>
+
+    <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function () {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(function (registration) {
+                        console.log('SW registered: ', registration);
+                    })
+                    .catch(function (registrationError) {
+                        console.log('SW registration failed: ', registrationError);
+                    });
+            });
+        }
+    </script>
+</body>
+
+</html>
