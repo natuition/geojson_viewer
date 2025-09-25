@@ -185,6 +185,9 @@ test-paris.zip
 *.swp
 *.swo
 
+# GitHub specific
+.github/
+
 # Build outputs
 dist/
 build/
