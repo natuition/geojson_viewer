@@ -185,8 +185,9 @@ test-paris.zip
 *.swp
 *.swo
 
-# GitHub specific
-.github/
+# GitHub specific (allow workflows)
+.github/copilot-instructions.md
+# .github/workflows/ - Temporairement autorisé pour déploiement
 
 # Build outputs
 dist/

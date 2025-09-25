@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GeoJSON Viewer PWA</title>
+    <link rel="canonical" href="https://natuition.github.io/geojson_viewer/">
+    <script>
+        // Redirection HTTPS pour PWA
+        if (location.protocol !== 'https:' && location.hostname !== 'localhost') {
+            location.replace('https:' + window.location.href.substring(window.location.protocol.length));
+        }
+    </script>
+    <script>
+        // Redirection vers index.html
+        window.location.replace('./index.html');
+    </script>
+</head>
+<body>
+    <p>Redirection vers l'application...</p>
+</body>
+</html>
